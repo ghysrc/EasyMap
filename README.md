@@ -5,7 +5,7 @@ EasyMap provids a more easy wat to deal with maps. (MapKit, [百度地图](http:
 
 Here is a sample code to get current location
 
-```sw
+```swift
 class ViewController: UIViewController, CLLocationManagerDelegate 
 ...
 let clManager = CLLocationManager()
@@ -27,7 +27,7 @@ Well, I'm a lazy person, too many lines of codes here.
 
 Let's see how many lines left by using EasyMap.
 
-```sw
+```swift
 Map.getLocation(onSuccess: { (location) in
     // Do something
 }) { (error) in
@@ -45,7 +45,7 @@ EasyMap contains three Map Services. There is just a slighty difference.
 
 ##### Locate
 
-```sw
+```swift
 Map.getLocation(onSuccess: { (location) in
             
 }) { (error) in
@@ -55,7 +55,7 @@ Map.getLocation(onSuccess: { (location) in
 
 ##### ReverseGeocoder
 
-```sw
+```swift
 BMap.reverseGeocoder(coordinate: coordinate, onSuccess: { (result) in
     
 }) { (errorCode) in
@@ -65,7 +65,7 @@ BMap.reverseGeocoder(coordinate: coordinate, onSuccess: { (result) in
 
 ##### Get suggestions when typing
 
-```sw
+```swift
 AMap.searchInputTips(keywords: "plaza", onSuccess: { (response) in
     
 }, onFail: { (error) in
@@ -75,7 +75,7 @@ AMap.searchInputTips(keywords: "plaza", onSuccess: { (response) in
 
 ##### Search nearby pois
 
-```sw
+```swift
 BMap.searchPoi(near: coordinate, radius: 1000, keyword: "hotel", onSuccess: { (result) in
     
 }, onFail: { (errorCode) in
@@ -87,8 +87,6 @@ BMap.searchPoi(near: coordinate, radius: 1000, keyword: "hotel", onSuccess: { (r
 
 - [ ] Demo Project
 - [ ] More Features
-
-
 - [ ] Cocopods
 
 ### Contribute
