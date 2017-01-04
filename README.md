@@ -37,7 +37,7 @@ Map.getLocation(onSuccess: { (location) in
 
 ### Usage
 
-EasyMap contains thre Map Services. There is just a slighty difference.
+EasyMap contains three Map Services. There is just a slighty difference.
 
 - Map == MapKit
 - AMap == [高德地图](http://lbs.amap.com/)
@@ -94,4 +94,4 @@ BMap.searchPoi(near: coordinate, radius: 1000, keyword: "hotel", onSuccess: { (r
 ### Contribute
 
 - Pull Request is more than welcome
-- Found a bug or need a new feature, feel free to open a issue.
+- Found a bug or need a new feature, feel free to open an issue.
