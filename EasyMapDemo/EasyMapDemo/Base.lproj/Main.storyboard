@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TVd-H7-1aV">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MapKit-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="EasyMapDemo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EB8-aN-m0b">
+                                <rect key="frame" x="8" y="28" width="359" height="30"/>
+                                <state key="normal" title="Locate"/>
+                                <connections>
+                                    <action selector="startLocating:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SJE-z3-WV1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnH-u9-Cyu">
+                                <rect key="frame" x="8" y="73" width="359" height="30"/>
+                                <state key="normal" title="ReverseGeocoder"/>
+                                <connections>
+                                    <action selector="reverseGeocoder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GJ6-JB-qcI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SE6-WG-GvK">
+                                <rect key="frame" x="8" y="118" width="359" height="30"/>
+                                <state key="normal" title="POI Search"/>
+                                <connections>
+                                    <action selector="poiSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qHg-1o-icg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wnH-u9-Cyu" firstAttribute="trailing" secondItem="EB8-aN-m0b" secondAttribute="trailing" id="9bx-6K-jY8"/>
+                            <constraint firstItem="SE6-WG-GvK" firstAttribute="top" secondItem="wnH-u9-Cyu" secondAttribute="bottom" constant="15" id="P8d-mb-9py"/>
+                            <constraint firstItem="SE6-WG-GvK" firstAttribute="trailing" secondItem="EB8-aN-m0b" secondAttribute="trailing" id="XAt-Pl-7Xi"/>
+                            <constraint firstItem="EB8-aN-m0b" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Yca-ie-wSY"/>
+                            <constraint firstItem="wnH-u9-Cyu" firstAttribute="top" secondItem="EB8-aN-m0b" secondAttribute="bottom" constant="15" id="fNJ-IW-gyQ"/>
+                            <constraint firstAttribute="trailing" secondItem="EB8-aN-m0b" secondAttribute="trailing" constant="8" id="fsN-gG-2MA"/>
+                            <constraint firstItem="EB8-aN-m0b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="hxU-pD-3ev"/>
+                            <constraint firstItem="wnH-u9-Cyu" firstAttribute="leading" secondItem="EB8-aN-m0b" secondAttribute="leading" id="qfV-mS-HT4"/>
+                            <constraint firstItem="SE6-WG-GvK" firstAttribute="leading" secondItem="EB8-aN-m0b" secondAttribute="leading" id="svf-oF-hKa"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="MapKit" id="WIH-sI-eLr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="972" y="37.331334332833585"/>
+        </scene>
+        <!--AMap-->
+        <scene sceneID="ASW-dp-DYJ">
+            <objects>
+                <viewController id="CVT-33-iH7" customClass="AMapViewController" customModule="EasyMapDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CX5-9s-6ai"/>
+                        <viewControllerLayoutGuide type="bottom" id="YaT-iM-OaV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cLk-Gd-45U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-LD-I24">
+                                <rect key="frame" x="8" y="28" width="359" height="30"/>
+                                <state key="normal" title="Locate"/>
+                                <connections>
+                                    <action selector="startLocating:" destination="CVT-33-iH7" eventType="touchUpInside" id="2aJ-wV-uKv"/>
+                                    <action selector="startLocating:" destination="BYZ-38-t0r" eventType="touchUpInside" id="chZ-pW-GQm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUJ-IN-KCY">
+                                <rect key="frame" x="8" y="73" width="359" height="30"/>
+                                <state key="normal" title="ReverseGeocoder"/>
+                                <connections>
+                                    <action selector="reverseGeocoder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Jt-02-OtT"/>
+                                    <action selector="reverseGeocoder:" destination="CVT-33-iH7" eventType="touchUpInside" id="Ecs-m2-NT0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndQ-On-CNr">
+                                <rect key="frame" x="8" y="118" width="359" height="30"/>
+                                <state key="normal" title="POI Search"/>
+                                <connections>
+                                    <action selector="poiSearch:" destination="CVT-33-iH7" eventType="touchUpInside" id="Mof-PN-Cgp"/>
+                                    <action selector="poiSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VRh-3l-axz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cUJ-IN-KCY" firstAttribute="top" secondItem="Pac-LD-I24" secondAttribute="bottom" constant="15" id="4w7-PE-ZJY"/>
+                            <constraint firstItem="ndQ-On-CNr" firstAttribute="trailing" secondItem="Pac-LD-I24" secondAttribute="trailing" id="Mjr-KK-x3P"/>
+                            <constraint firstItem="ndQ-On-CNr" firstAttribute="top" secondItem="cUJ-IN-KCY" secondAttribute="bottom" constant="15" id="U85-5V-OGi"/>
+                            <constraint firstItem="Pac-LD-I24" firstAttribute="top" secondItem="CX5-9s-6ai" secondAttribute="bottom" constant="8" id="V0z-k0-u5X"/>
+                            <constraint firstAttribute="trailing" secondItem="Pac-LD-I24" secondAttribute="trailing" constant="8" id="c2v-qS-gE5"/>
+                            <constraint firstItem="cUJ-IN-KCY" firstAttribute="leading" secondItem="Pac-LD-I24" secondAttribute="leading" id="d99-7c-knK"/>
+                            <constraint firstItem="cUJ-IN-KCY" firstAttribute="trailing" secondItem="Pac-LD-I24" secondAttribute="trailing" id="fUx-wb-h99"/>
+                            <constraint firstItem="ndQ-On-CNr" firstAttribute="leading" secondItem="Pac-LD-I24" secondAttribute="leading" id="ooU-hi-VFN"/>
+                            <constraint firstItem="Pac-LD-I24" firstAttribute="leading" secondItem="cLk-Gd-45U" secondAttribute="leading" constant="8" id="xCu-Zh-3sJ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AMap" id="lEn-lA-w67"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G8E-wV-S70" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1664.8" y="34.632683658170919"/>
+        </scene>
+        <!--BMap-->
+        <scene sceneID="kuq-Gy-4TB">
+            <objects>
+                <viewController id="c1M-O0-KRL" customClass="BMapViewController" customModule="EasyMapDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xqO-bi-CRW"/>
+                        <viewControllerLayoutGuide type="bottom" id="hLx-qj-2AV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LBS-do-1CB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lw-Wz-adg">
+                                <rect key="frame" x="8" y="28" width="359" height="30"/>
+                                <state key="normal" title="Locate"/>
+                                <connections>
+                                    <action selector="startLocating:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AWZ-Wr-8wA"/>
+                                    <action selector="startLocating:" destination="c1M-O0-KRL" eventType="touchUpInside" id="mPI-FD-ZWe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUk-kK-kJQ">
+                                <rect key="frame" x="8" y="73" width="359" height="30"/>
+                                <state key="normal" title="ReverseGeocoder"/>
+                                <connections>
+                                    <action selector="reverseGeocoder:" destination="c1M-O0-KRL" eventType="touchUpInside" id="frq-ma-PiQ"/>
+                                    <action selector="reverseGeocoder:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jzC-nh-0Q0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtQ-DS-rkO">
+                                <rect key="frame" x="8" y="118" width="359" height="30"/>
+                                <state key="normal" title="POI Search"/>
+                                <connections>
+                                    <action selector="poiSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hpk-6K-AF2"/>
+                                    <action selector="poiSearch:" destination="c1M-O0-KRL" eventType="touchUpInside" id="zI0-tH-Jep"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dtQ-DS-rkO" firstAttribute="top" secondItem="OUk-kK-kJQ" secondAttribute="bottom" constant="15" id="4If-tJ-YSd"/>
+                            <constraint firstItem="dtQ-DS-rkO" firstAttribute="leading" secondItem="1lw-Wz-adg" secondAttribute="leading" id="4Ss-rJ-ptH"/>
+                            <constraint firstItem="OUk-kK-kJQ" firstAttribute="trailing" secondItem="1lw-Wz-adg" secondAttribute="trailing" id="Az6-SG-8vX"/>
+                            <constraint firstItem="OUk-kK-kJQ" firstAttribute="leading" secondItem="1lw-Wz-adg" secondAttribute="leading" id="QP5-hz-zf7"/>
+                            <constraint firstItem="1lw-Wz-adg" firstAttribute="top" secondItem="xqO-bi-CRW" secondAttribute="bottom" constant="8" id="QVv-oj-q8d"/>
+                            <constraint firstItem="dtQ-DS-rkO" firstAttribute="trailing" secondItem="1lw-Wz-adg" secondAttribute="trailing" id="RLU-YG-94p"/>
+                            <constraint firstItem="OUk-kK-kJQ" firstAttribute="top" secondItem="1lw-Wz-adg" secondAttribute="bottom" constant="15" id="l7f-Tb-DlR"/>
+                            <constraint firstAttribute="trailing" secondItem="1lw-Wz-adg" secondAttribute="trailing" constant="8" id="rBX-rV-Ghj"/>
+                            <constraint firstItem="1lw-Wz-adg" firstAttribute="leading" secondItem="LBS-do-1CB" secondAttribute="leading" constant="8" id="yUR-AG-x2v"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="BMap" id="iHh-eF-Hoc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NOc-13-ABP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2332" y="34.632683658170919"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="JQt-Ks-R5i">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="TVd-H7-1aV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="RuJ-A8-Xdf">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="Rqi-Sh-zQn"/>
+                        <segue destination="CVT-33-iH7" kind="relationship" relationship="viewControllers" id="aRj-tQ-3G2"/>
+                        <segue destination="c1M-O0-KRL" kind="relationship" relationship="viewControllers" id="FGs-Ig-UDK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dig-T0-Fz9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="35.532233883058474"/>
+        </scene>
+    </scenes>
+</document>

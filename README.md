@@ -1,5 +1,5 @@
 # EasyMap
-EasyMap provids a more easy wat to deal with maps. (MapKit, [百度地图](http://lbsyun.baidu.com/), [高德地图](http://lbs.amap.com/) )
+EasyMap provids a more easy way to deal with maps. (MapKit, [百度地图](http://lbsyun.baidu.com/), [高德地图](http://lbs.amap.com/) )
 
 ### Why use EasyMap?
 
@@ -39,9 +39,9 @@ Map.getLocation(onSuccess: { (location) in
 
 EasyMap contains three Map Services. There is just a slighty difference.
 
-- Map == MapKit
-- AMap == [高德地图](http://lbs.amap.com/)
-- BMap == [百度地图](http://lbsyun.baidu.com/)
+- Map = MapKit
+- AMap = [高德地图](http://lbs.amap.com/)
+- BMap = [百度地图](http://lbsyun.baidu.com/)
 
 ##### Locate
 
@@ -60,6 +60,16 @@ BMap.reverseGeocoder(coordinate: coordinate, onSuccess: { (result) in
     
 }) { (errorCode) in
     
+}
+```
+
+##### Geocoder
+
+```swift
+BMap.geocoder(address: "somewhere", city: "", onSuccess: { (result) in
+            
+}) { (errorCode) in
+            
 }
 ```
 
@@ -85,11 +95,18 @@ BMap.searchPoi(near: coordinate, radius: 1000, keyword: "hotel", onSuccess: { (r
 
 ### TODO
 
-- [ ] Demo Project
+- [x] Demo Project
 - [ ] More Features
 - [ ] Cocopods
 
+### Aboud Demo Project
+
+I don't suggest to download the demo project. The .framework files takes more than 100M, it may slow you down.
 ### Contribute
 
 - Pull Request is more than welcome
-- Found a bug or need a new feature, feel free to open an issue.
+- Found a bug or need a new feature, feel free to open a issue.
+
+### License
+
+MIT
