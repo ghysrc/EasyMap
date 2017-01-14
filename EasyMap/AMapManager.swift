@@ -11,9 +11,11 @@ typealias AMapSearchFailHandler = ((Error) -> Void)
 typealias AMapPoiSearchSuccessHandler = ((AMapPOISearchResponse) -> Void)
 typealias AMapInputTipSearchSuccessHandler = ((AMapInputTipsSearchResponse) -> Void)
 
-let AMap:AMapManager = AMapManager()
+let AMap:AMapManager = AMapManager.instance
 
 class AMapManager: NSObject, AMapLocationManagerDelegate, AMapSearchDelegate {
+    
+    static let instance = AMapManager()
     
     private let locationManager: AMapLocationManager
     private let searchApi: AMapSearchAPI
@@ -137,6 +139,13 @@ class AMapManager: NSObject, AMapLocationManagerDelegate, AMapSearchDelegate {
     
     func onPOISearchDone(_ request: AMapPOISearchBaseRequest!, response: AMapPOISearchResponse!) {
         poiSearchSuccess?(response)
+    }
+    
+    /// Distance between two coordinates
+    func distanceBetween(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D ) -> CLLocationDistance {
+        let point1 = MAMapPointForCoordinate(coordinate1)
+        let point2 = MAMapPointForCoordinate(coordinate2)
+        return MAMetersBetweenMapPoints(point1, point2)
     }
     
 }

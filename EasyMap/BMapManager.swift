@@ -11,9 +11,11 @@ typealias BMapSearchFailHandler = ((BMKSearchErrorCode) -> Void)
 typealias BMapPoiSearchSuccessHandler = ((BMKPoiResult) -> Void)
 typealias BMapSuggestionSearchSuccessHandler = ((BMKSuggestionResult) -> Void)
 
-let BMap:BMapManager = BMapManager()
+let BMap:BMapManager = BMapManager.instance
 
 class BMapManager: NSObject, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, BMKSuggestionSearchDelegate {
+    
+    static let instance = BMapManager()
     
     private let locationService: BMKLocationService
     private lazy var searchService = BMKGeoCodeSearch()
@@ -155,6 +157,13 @@ class BMapManager: NSObject, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegat
         } else {
             searchFail?(error)
         }
+    }
+    
+    /// Distance between two coordinates
+    func distanceBetween(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D ) -> CLLocationDistance {
+        let point1 = BMKMapPointForCoordinate(coordinate1)
+        let point2 = BMKMapPointForCoordinate(coordinate2)
+        return BMKMetersBetweenMapPoints(point1, point2)
     }
     
 }

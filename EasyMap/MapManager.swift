@@ -11,9 +11,11 @@ typealias ReGeocoderSuccessHandler = (([CLPlacemark]) -> Void)
 typealias GeocoderSuccessHandler = (([CLPlacemark]) -> Void)
 typealias SearchPoiSuccessHandler = (([MKMapItem]) -> Void)
 
-let Map:MapManager = MapManager()
+let Map:MapManager = MapManager.instance
 
 class MapManager: NSObject, CLLocationManagerDelegate {
+    
+    static let instance = MapManager()
     
     private let clManager: CLLocationManager
     private let clGeocoder: CLGeocoder
@@ -89,6 +91,13 @@ class MapManager: NSObject, CLLocationManagerDelegate {
                 onFail(error!)
             }
         }
+    }
+    
+    /// Distance between two coordinates
+    func distanceBetween(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D ) -> CLLocationDistance {
+        let point1 = MKMapPointForCoordinate(coordinate1)
+        let point2 = MKMapPointForCoordinate(coordinate2)
+        return MKMetersBetweenMapPoints(point1, point2)
     }
     
 }
