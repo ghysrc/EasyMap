@@ -39,6 +39,15 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    /**
+     
+     * Start continuouts locating
+     
+     * Default desiredAccuracy is kCLLocationAccuracyHundredMeters
+     
+     * Default distanceFilter is 200 meters
+     
+     */
     func getLocation(withAccuracy: CLLocationAccuracy = kCLLocationAccuracyHundredMeters, distanceFilter: CLLocationDistance = 200, onSuccess: @escaping LocateSuccessHandler, onFail: @escaping MapErrorHandler) {
         if !CLLocationManager.locationServicesEnabled() || CLLocationManager.authorizationStatus() == .denied {
             return
@@ -60,6 +69,7 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         self.locateFail?(error)
     }
     
+    /// coordinate to address
     func reverseGeocoder(location:CLLocation, onSuccess:@escaping ReGeocoderSuccessHandler, onFail: @escaping MapErrorHandler) {
         self.clGeocoder.reverseGeocodeLocation(location) { (placeMarks, error) in
             if let marks = placeMarks {
@@ -70,23 +80,21 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func reverseGeocoder(coordinate:CLLocationCoordinate2D, onSuccess:@escaping ReGeocoderSuccessHandler, onFail: @escaping MapErrorHandler) {
-        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        self.clGeocoder.reverseGeocodeLocation(location) { (placeMarks, error) in
-            if let marks = placeMarks {
-                onSuccess(marks)
-            } else {
-                onFail(error!)
-            }
-        }
-    }
-    
-    func reverseGeocoder(coordinates:[CLLocationCoordinate2D], onFinished: @escaping MultipleReGeocoderSuccessHandler) {
+    /**
+     
+     * reverse geocode with [CLLocation]
+     
+     * return: [Any]
+     
+     * If a reverse geocode request successed, Any means CLPlaceMark. If it failed, Any means Error
+     
+     */
+    func reverseGeocoder(locations:[CLLocation], onFinished: @escaping MultipleReGeocoderSuccessHandler) {
         var resultMarks = [Any]()
         let signal = DispatchSemaphore(value: 0)
         DispatchQueue.global(qos: .default).async {
-            for coordinate in coordinates {
-                self.reverseGeocoder(coordinate: coordinate, onSuccess: { (marks) in
+            for location in locations {
+                self.reverseGeocoder(location: location, onSuccess: { (marks) in
                     resultMarks.append(marks)
                     signal.signal()
                 }, onFail: { (error) in
@@ -99,6 +107,7 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    /// address to CLPlacemark
     func geocoder(address:String, region:CLRegion? = nil, onSuccess: @escaping GeocoderSuccessHandler, onFail: @escaping MapErrorHandler) {
         self.clGeocoder.geocodeAddressString(address, in: region) { (placeMarks, error) in
             if let marks = placeMarks {
@@ -109,6 +118,7 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    /// addresses to [CLPlacemark]
     func geocoder(addresses:[String], onFinished: @escaping MultipleGeocoderSuccessHandler) {
         var resultMarks = [Any]()
         let signal = DispatchSemaphore(value: 0)
@@ -127,6 +137,7 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    /// Search nearby pois
     func searchPoi(near coordinate:CLLocationCoordinate2D, radius:CLLocationDistance, keyWords:String, onSuccess:@escaping SearchPoiSuccessHandler, onFail: @escaping MapErrorHandler) {
         let region = MKCoordinateRegionMakeWithDistance(coordinate, radius, radius)
         let request = MKLocalSearchRequest()
