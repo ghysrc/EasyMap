@@ -8,7 +8,9 @@ import MapKit
 typealias LocateSuccessHandler = ((CLLocation) -> Void)
 typealias MapErrorHandler = ((Error) -> Void)
 typealias ReGeocoderSuccessHandler = (([CLPlacemark]) -> Void)
+typealias MultipleReGeocoderSuccessHandler = (([Any]) -> Void)
 typealias GeocoderSuccessHandler = (([CLPlacemark]) -> Void)
+typealias MultipleGeocoderSuccessHandler = (([Any]) -> Void)
 typealias SearchPoiSuccessHandler = (([MKMapItem]) -> Void)
 
 let Map:MapManager = MapManager.instance
@@ -68,6 +70,35 @@ class MapManager: NSObject, CLLocationManagerDelegate {
         }
     }
     
+    func reverseGeocoder(coordinate:CLLocationCoordinate2D, onSuccess:@escaping ReGeocoderSuccessHandler, onFail: @escaping MapErrorHandler) {
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        self.clGeocoder.reverseGeocodeLocation(location) { (placeMarks, error) in
+            if let marks = placeMarks {
+                onSuccess(marks)
+            } else {
+                onFail(error!)
+            }
+        }
+    }
+    
+    func reverseGeocoder(coordinates:[CLLocationCoordinate2D], onFinished: @escaping MultipleReGeocoderSuccessHandler) {
+        var resultMarks = [Any]()
+        let signal = DispatchSemaphore(value: 0)
+        DispatchQueue.global(qos: .default).async {
+            for coordinate in coordinates {
+                self.reverseGeocoder(coordinate: coordinate, onSuccess: { (marks) in
+                    resultMarks.append(marks)
+                    signal.signal()
+                }, onFail: { (error) in
+                    resultMarks.append(error)
+                    signal.signal()
+                })
+                signal.wait()
+            }
+            onFinished(resultMarks)
+        }
+    }
+    
     func geocoder(address:String, region:CLRegion? = nil, onSuccess: @escaping GeocoderSuccessHandler, onFail: @escaping MapErrorHandler) {
         self.clGeocoder.geocodeAddressString(address, in: region) { (placeMarks, error) in
             if let marks = placeMarks {
@@ -75,6 +106,24 @@ class MapManager: NSObject, CLLocationManagerDelegate {
             } else {
                 onFail(error!)
             }
+        }
+    }
+    
+    func geocoder(addresses:[String], onFinished: @escaping MultipleGeocoderSuccessHandler) {
+        var resultMarks = [Any]()
+        let signal = DispatchSemaphore(value: 0)
+        DispatchQueue.global(qos: .default).async {
+            for address in addresses {
+                self.geocoder(address: address, onSuccess: { (marks) in
+                    resultMarks.append(marks)
+                    signal.signal()
+                }, onFail: { (error) in
+                    resultMarks.append(error)
+                    signal.signal()
+                })
+                signal.wait()
+            }
+            onFinished(resultMarks)
         }
     }
     
